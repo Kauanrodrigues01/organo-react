@@ -1,4 +1,59 @@
 /* ========================================
+   VARIÁVEIS CSS GLOBAIS (CSS Custom Properties)
+   ======================================== */
+:root {
+  /* Cores Primárias */
+  --color-primary: #6278F7;
+  --color-secondary: #95FFD4;
+  --color-tertiary: #F2F2F2;
+
+  /* Cores times destaques */
+  --color-highlight-programming: #57C278;
+  --color-highlight-front-end: #82CFFA;
+  --color-highlight-data-science: #A6D157;
+  --color-highlight-dev-ops: #E06B69;
+  --color-highlight-ux-design: #DB6EBF;
+  --color-highlight-mobile: #FFBA05;
+  --color-highlight-innovation-management: #F2C94C;
+
+  /* Cores times fundos */
+  --background-programming: #D9F7E9;
+  --background-front-end: #E8F8FF;
+  --background-data-science: #F0F8E2;
+  --background-dev-ops: #FDE7E8;
+  --background-ux-design: #FAE9F5;
+  --background-mobile: #FFF5D9;
+  --background-innovation-management: #FFEEDF;
+
+  /* Tipografia */
+  --font-family-primary: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --font-family-secondary: 'Arial', sans-serif;
+  --font-family-mono: 'Courier New', monospace;
+  
+  /* Tamanhos de Fonte */
+  --font-size-xs: 0.75rem;    /* 12px */
+  --font-size-sm: 0.875rem;   /* 14px */
+  --font-size-base: 1rem;     /* 16px */
+  --font-size-lg: 1.125rem;   /* 18px */
+  --font-size-xl: 1.25rem;    /* 20px */
+  --font-size-2xl: 1.5rem;    /* 24px */
+  --font-size-3xl: 1.875rem;  /* 30px */
+  --font-size-4xl: 2.25rem;   /* 36px */
+  
+  /* Pesos de Fonte */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  
+  /* Transições */
+  --transition-fast: 0.15s ease-in-out;
+  --transition-normal: 0.3s ease-in-out;
+  --transition-slow: 0.5s ease-in-out;
+}
+
+/* ========================================
    RESET CSS
    ======================================== */
 html, body, div, span, applet, object, iframe,
