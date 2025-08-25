@@ -1,10 +1,11 @@
 import './InputText.css'
 
-const InputText = () => {
+const InputText = (props) => {
+  console.log(props);
   return (
     <div className="input-text">
-      <label htmlFor="input-text">Texto:</label>
-      <input type="text" id="input-text" placeholder="Digite algo..." />
+      <label htmlFor="input-text">{props.label}</label>
+      <input type="text" id="input-text" placeholder={props.placeholder} />
     </div>
   )
 }

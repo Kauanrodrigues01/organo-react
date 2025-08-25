@@ -26,10 +26,9 @@
   --background-innovation-management: #FFEEDF;
 
   /* Tipografia */
-  --font-family-primary: 'Montserrat', sans-serif;
-  --font-family-secondary: 'Arial', sans-serif;
-  --font-family-mono: 'Courier New', monospace;
-  
+  --font-family-primary: "Montserrat", sans-serif;
+  --font-family-secondary: "Prata", serif;
+
   /* Tamanhos de Fonte */
   --font-size-xs: 0.75rem;    /* 12px */
   --font-size-sm: 0.875rem;   /* 14px */

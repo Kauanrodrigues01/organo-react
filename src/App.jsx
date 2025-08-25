@@ -6,7 +6,10 @@ function App() {
   return (
     <>
       <Banner />
-      <InputText />
+      <InputText label="Nome" placeholder="Digite seu nome" />
+      <InputText label="Cargo" placeholder="Digite seu cargo" />
+      <InputText label="Imagem" placeholder="Informe o endereço URL da imagem" />
+      <InputText label="Telefone" placeholder="Digite seu telefone" />
     </>
   )
 }
