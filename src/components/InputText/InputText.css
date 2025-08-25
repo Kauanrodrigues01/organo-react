@@ -1,0 +1,22 @@
+.input-text {
+    margin: 1.5rem 0;
+}
+
+.input-text label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-family: var(--font-family-primary);
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-lg);
+}
+
+.input-text input {
+    background: #FFF;
+    box-shadow: 10px 10px 30px 0 rgba(0, 0, 0, 0.06);
+    width: 100%;
+    border: none;
+    color: #A4A4A4;
+    font-family: var(--font-family-primary);
+    font-size: var(--font-size-base);
+    padding: 25px;
+}
