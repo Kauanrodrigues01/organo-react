@@ -1,3 +1,4 @@
+import Button from "../Button";
 import SelectInput from "../SelectInput";
 import TextInput from "../TextInput";
 import "./Form.css";
@@ -44,6 +45,7 @@ const Form = () => {
           type="tel"
         />
         <SelectInput label="Time" id="input-team" name="team" options={teamOptions} />
+        <Button text="Criar Card" />
       </form>
     </section>
   );
