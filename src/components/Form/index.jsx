@@ -1,7 +1,19 @@
+import SelectInput from "../SelectInput";
 import TextInput from "../TextInput";
 import "./Form.css";
 
 const Form = () => {
+  const teamOptions = [
+    { value: "back", label: "Programação" },
+    { value: "front", label: "Front-end" },
+    { value: "ds", label: "Data Science" },
+    { value: "devops", label: "DevOps" },
+    { value: "ui", label: "Ux e Design" },
+    { value: "mobile", label: "Mobile" },
+    { value: "qa", label: "QA" },
+    { value: "ig", label: "Inovação e Gestão" }
+  ];
+
   return (
     <section className="form">
       <form action="">
@@ -31,17 +43,7 @@ const Form = () => {
           id="input-telefone"
           type="tel"
         />
-        <label htmlFor="input-time">Time</label>
-        <select name="time" id="input-time">
-          <option value="back">Programação</option>
-          <option value="front">Front-end</option>
-          <option value="ds">Data Science</option>
-          <option value="devops">DevOps</option>
-          <option value="ui">Ux e Design</option>
-          <option value="mobile">Mobile</option>
-          <option value="qa">QA</option>
-          <option value="ig">Inovação e Gestão</option>
-        </select>
+        <SelectInput label="Time" id="input-team" name="team" options={teamOptions} />
       </form>
     </section>
   );
