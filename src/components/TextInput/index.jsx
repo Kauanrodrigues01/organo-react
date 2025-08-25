@@ -1,6 +1,6 @@
-import "./InputText.css";
+import "./TextInput.css";
 
-const InputText = (props) => {
+const TextInput = (props) => {
   // Gera um ID único baseado no label ou usa um ID fornecido via props
   const inputId =
     props.id || props.label?.toLowerCase().replace(/\s+/g, "-") || "input-text";
@@ -22,4 +22,4 @@ const InputText = (props) => {
   );
 };
 
-export default InputText;
+export default TextInput;
