@@ -6,7 +6,6 @@ const TextInput = (props) => {
     props.id || props.label?.toLowerCase().replace(/\s+/g, "-") || "input-text";
   const inputName = props.name || inputId;
 
-  console.log(props);
   return (
     <div className="input-text">
       <label htmlFor={inputId}>{props.label}</label>
@@ -17,6 +16,7 @@ const TextInput = (props) => {
         placeholder={props.placeholder}
         value={props.value}
         onChange={props.onChange}
+        required={props.required || false}
       />
     </div>
   );

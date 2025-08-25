@@ -15,20 +15,28 @@ const Form = () => {
     { value: "ig", label: "Inovação e Gestão" }
   ];
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log(e);
+    alert('Form submitted');
+  }
+
   return (
     <section className="form">
-      <form action="">
+      <form onSubmit={handleSubmit}>
         <TextInput
           label="Nome"
           placeholder="Digite seu nome"
           name="nome"
           id="input-nome"
+          required={true}
         />
         <TextInput
           label="Cargo"
           placeholder="Digite seu cargo"
           name="cargo"
           id="input-cargo"
+          required={true}
         />
         <TextInput
           label="Imagem"
@@ -36,6 +44,7 @@ const Form = () => {
           name="imagem"
           id="input-imagem"
           type="url"
+          required={true}
         />
         <TextInput
           label="Telefone"
@@ -43,9 +52,12 @@ const Form = () => {
           name="telefone"
           id="input-telefone"
           type="tel"
+          required={true}
         />
         <SelectInput label="Time" id="input-team" name="team" options={teamOptions} />
-        <Button text="Criar Card" />
+        <Button type="submit">
+          Criar Card
+        </Button>
       </form>
     </section>
   );

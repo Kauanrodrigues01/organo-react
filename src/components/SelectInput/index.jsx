@@ -1,28 +1,51 @@
-import './SelectInput.css'
+import "./SelectInput.css";
 
 const SelectInput = (props) => {
-  const selectId = props.id || props.label?.toLowerCase().replace(/\s+/g, '-') || 'select-input'
-  const selectName = props.name || selectId
+  const selectId =
+    props.id ||
+    props.label?.toLowerCase().replace(/\s+/g, "-") ||
+    "select-input";
+  const selectName = props.name || selectId;
+
+  const handleSelectChange = (event) => {
+    const select = event.target;
+    const newValue = select.value;
+
+    // Se o valor for vazio (primeira opção), adiciona classe para estilo cinza
+    if (newValue === "") {
+      select.classList.add("placeholder-selected");
+    } else {
+      select.classList.remove("placeholder-selected");
+    }
+
+    // Chama o onChange do pai se existir
+    if (props.onChange) {
+      props.onChange(event);
+    }
+  };
 
   return (
-    <div className='select-input'>
+    <div className="select-input">
       <label htmlFor={selectId}>{props.label}</label>
-      <select name={selectName} id={selectId}>
-        {props.options && props.options.map((option, index) => (
-          <option key={index} value={option.value}>{option.label}</option>
-        ))}
-        </select>
+      <select
+        name={selectName}
+        id={selectId}
+        className="placeholder-selected" // Inicia com a classe para mostrar placeholder em cinza
+        onChange={handleSelectChange}
+        defaultValue="" // Usa defaultValue em vez de value controlado
+      >
+        <option value="" disabled className="placeholder">
+          Selecione uma opção
+        </option>
+        {props.options &&
+          props.options.map((option, index) => (
+            <option key={index} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+      </select>
     </div>
-  )
-}
+  );
+};
 
 export default SelectInput;
-
-{/* <option value="back">Programação</option>
-<option value="front">Front-end</option>
-<option value="ds">Data Science</option>
-<option value="devops">DevOps</option>
-<option value="ui">Ux e Design</option>
-<option value="mobile">Mobile</option>
-<option value="qa">QA</option>
-<option value="ig">Inovação e Gestão</option> */}
