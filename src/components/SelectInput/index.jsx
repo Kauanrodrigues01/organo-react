@@ -32,7 +32,8 @@ const SelectInput = (props) => {
         id={selectId}
         className="placeholder-selected" // Inicia com a classe para mostrar placeholder em cinza
         onChange={handleSelectChange}
-        defaultValue="" // Usa defaultValue em vez de value controlado
+        value={props.value}
+        required={props.required || false}
       >
         <option value="" disabled className="placeholder">
           Selecione uma opção
