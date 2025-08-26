@@ -4,7 +4,8 @@ import SelectInput from "../SelectInput";
 import TextInput from "../TextInput";
 import "./Form.css";
 
-const Form = () => {
+const Form = (props) => {
+  console.log('Renderizou o componenete Form');
   const teamOptions = [
     { value: "back", label: "Programação" },
     { value: "front", label: "Front-end" },
@@ -24,7 +25,15 @@ const Form = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log("Dados do formulário:", { name, position, image, phone, team });
+    if (props.onSubmit) {
+      props.onSubmit({
+        name,
+        position,
+        image,
+        phone,
+        team,
+      });
+    }
   }
 
   return (
