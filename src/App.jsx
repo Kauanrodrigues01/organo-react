@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import Banner from "./components/Banner";
 import Form from "./components/Form";
 import Team from "./components/Team";
-import getJsonData from "../data/utils/getJsonData";
+import getJsonData from "./utils/getJsonData";
 import Footer from "./components/Footer";
 
 function App() {
