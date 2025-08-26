@@ -1,48 +1,75 @@
-import { useCallback, useState } from 'react';
-import Banner from './components/Banner'
-import Form from './components/Form'
+import { useCallback, useState } from "react";
+import Banner from "./components/Banner";
+import Form from "./components/Form";
+import Team from "./components/Team";
 
 function App() {
-
   const [collaborators, setCollaborators] = useState([]);
+
+  const teams = [
+    {
+      name: "Programação",
+      primaryColor: "#57C278",
+      secondaryColor: "#D9F7E9",
+    },
+    {
+      name: "Front-End",
+      primaryColor: "#82CFFA",
+      secondaryColor: "#E8F8FF",
+    },
+    {
+      name: "Data Science",
+      primaryColor: "#A6D157",
+      secondaryColor: "#F0F8E2",
+    },
+    {
+      name: "DevOps",
+      primaryColor: "#E06B69",
+      secondaryColor: "#FDE7E8",
+    },
+    {
+      name: "UX e Design",
+      primaryColor: "#DB6EBF",
+      secondaryColor: "#FAE9F5",
+    },
+    {
+      name: "Mobile",
+      primaryColor: "#FFBA05",
+      secondaryColor: "#FFF5D9",
+    },
+    {
+      name: "Inovação e Gestão",
+      primaryColor: "#FF8A29",
+      secondaryColor: "#FFEEDF",
+    },
+  ];
 
   // function handleAddCollaborator(data) {
   //   setCollaborators([...collaborators, data])
   // }
 
   const handleAddCollaborator = useCallback((data) => {
-    setCollaborators(prev => [...prev, data])
-  }, []) // só recria a função se dependências mudarem (nenhuma aqui)
+    setCollaborators((prev) => {
+      console.log([...prev, data]);
+      return [...prev, data]
+    });
+  }, []); // só recria a função se dependências mudarem (nenhuma aqui)
 
   return (
     <>
       <Banner />
       <Form onSubmit={handleAddCollaborator} />
-
-      {/* 
-        Importante: sempre que o estado "collaborators" muda,
-        o React reexecuta a função App (re-renderização).
-        Mas isso NÃO significa que ele recria tudo do zero no DOM real.
-        O React faz a comparação (diffing) entre o Virtual DOM antigo e o novo
-        e aplica apenas as mudanças necessárias.
-        
-        Por exemplo:
-        - Banner e Form não vão mudar, porque não dependem de "collaborators".
-        - Apenas a lista de colaboradores realmente terá alterações no DOM.
-        
-        Isso deixa a aplicação performática mesmo com re-renderizações frequentes.
-      */}
-      {collaborators && collaborators.map((collaborator, index) => (
-        <div key={index}>
-          <h3>{collaborator.name}</h3>
-          <p>{collaborator.position}</p>
-          <img src={collaborator.image} alt={collaborator.name} />
-          <p>{collaborator.phone}</p>
-          <p>{collaborator.team}</p>
-        </div>
+      {teams.map((team) => (
+        <Team
+          key={team.name}
+          name={team.name}
+          primaryColor={team.primaryColor}
+          secondaryColor={team.secondaryColor}
+          collaborators={collaborators.filter((collaborator) => collaborator.team == team.name)}
+        />
       ))}
     </>
-  )
+  );
 }
 
-export default App
+export default App;

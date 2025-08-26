@@ -5,15 +5,13 @@ import TextInput from "../TextInput";
 import "./Form.css";
 
 const Form = (props) => {
-  console.log('Renderizou o componenete Form');
   const teamOptions = [
     { value: "back", label: "Programação" },
-    { value: "front", label: "Front-end" },
+    { value: "front", label: "Front-End" },
     { value: "ds", label: "Data Science" },
     { value: "devops", label: "DevOps" },
-    { value: "ui", label: "Ux e Design" },
+    { value: "ui", label: "UX e Design" },
     { value: "mobile", label: "Mobile" },
-    { value: "qa", label: "QA" },
     { value: "ig", label: "Inovação e Gestão" },
   ];
 
@@ -31,7 +29,7 @@ const Form = (props) => {
         position,
         image,
         phone,
-        team,
+        team: teamOptions.find((teamOption) => teamOption.value == team)?.label,
       });
     }
   }
