@@ -1,10 +1,21 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Banner from "./components/Banner";
 import Form from "./components/Form";
 import Team from "./components/Team";
+import getJsonData from "../data/utils/getJsonData";
 
 function App() {
   const [collaborators, setCollaborators] = useState([]);
+
+  // Funciona parecido com uma chamada em uma API
+  useEffect(() => {
+    const loadData = async () => {
+      const data = await getJsonData('/data/collaborators.json');
+      if (data) setCollaborators(data);
+    }
+    
+    loadData();
+  }, [])
 
   const teams = [
     {

@@ -1,0 +1,38 @@
+[
+    {
+        "name": "Kauan Rodrigues Lima",
+        "position": "Desenvolvedor Back-end",
+        "image": "https://media.licdn.com/dms/image/v2/D4E03AQFTQhPu-4VqDw/profile-displayphoto-scale_400_400/B4EZjKXNavGcAk-/0/1755741740516?e=1759363200&v=beta&t=eBh-iW7S_RRH9c4snoa_GQOG99RFYfT-xdBPi-g7il8",
+        "team": "Programação"
+    },
+    {
+        "name": "Jorge Kauan Maia Lima",
+        "position": "Desenvolvedor Mobile",
+        "image": "https://media.licdn.com/dms/image/v2/D4D03AQHL42KODqOxiQ/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1723303550394?e=1759363200&v=beta&t=PNgM9HGKQPbwLda2zb0LsgXNlv6IvIoGaqi8HcgnDFw",
+        "team": "Mobile"
+    },
+    {
+        "name": "Gleydson Cruz",
+        "position": "Desenvolvedor Back-end",
+        "image": "https://media.licdn.com/dms/image/v2/D4D03AQGM0ucHWMUgyA/profile-displayphoto-shrink_200_200/B4DZcys1ReHwAg-/0/1748902303042?e=1759363200&v=beta&t=9h9xu5oB3uOih4O0MfrF2riw-5Cd5uNe208dhPlqXqg",
+        "team": "Programação"
+    },
+    {
+        "name": "Roberto Filho",
+        "position": "Desenvolvedor Back-end",
+        "image": "https://media.licdn.com/dms/image/v2/D4E03AQEJBGVE5X5feA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1707015613983?e=1759363200&v=beta&t=ZLp7xt1Ur6COk2VhlZIF3HS7RBeV0NHbKuhviJTHIZQ",
+        "team": "Programação"
+    },
+    {
+        "name": "Alloran Farias",
+        "position": "Desenvolvedor Front-end",
+        "image": "https://media.licdn.com/dms/image/v2/D4D03AQFvr3OEPLptSQ/profile-displayphoto-shrink_400_400/B4DZjRmz5JHsAk-/0/1755863270073?e=1759363200&v=beta&t=bzd2Tikyau7BBRyoVZIptJXX5F20FxE2s6gPnDo4r2A",
+        "team": "Front-End"
+    },
+    {
+        "name": "Iago Evangelista",
+        "position": "Desenvolvedor Front-end",
+        "image": "https://media.licdn.com/dms/image/v2/D4E03AQE7YNpNQ1hd5g/profile-displayphoto-scale_400_400/B4EZjRhsApHoAw-/0/1755861929997?e=1759363200&v=beta&t=azhmkE2ZwFR2XXwsHGvyrjgCIofwFy8SHQgpWeBg2UI",
+        "team": "Front-End"
+    }
+]
