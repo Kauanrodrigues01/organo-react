@@ -1,0 +1,44 @@
+.footer {
+    background-color: var(--color-primary);
+    color: #fff;
+    padding: 0 80px;
+    height: 100vh;
+    max-height: 220px;
+}
+
+.footer div {
+    background-image: url('/images/fundo.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.footer ul li {
+    display: inline-block;
+    margin-right: 30px;
+}
+
+.footer ul li a img {
+    max-width: 24px;
+}
+
+.footer .logo {
+    max-width: 160px;
+    width: 100%;
+}
+
+.footer ul li:last-child {
+    margin-right: 0;
+}
+
+@media (max-width: 768px) {
+    .footer div {
+        flex-direction: column;
+        padding: 20px 0;
+    }
+}

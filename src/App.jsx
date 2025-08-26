@@ -3,6 +3,7 @@ import Banner from "./components/Banner";
 import Form from "./components/Form";
 import Team from "./components/Team";
 import getJsonData from "../data/utils/getJsonData";
+import Footer from "./components/Footer";
 
 function App() {
   const [collaborators, setCollaborators] = useState([]);
@@ -60,10 +61,7 @@ function App() {
   // }
 
   const handleAddCollaborator = useCallback((data) => {
-    setCollaborators((prev) => {
-      console.log([...prev, data]);
-      return [...prev, data]
-    });
+    setCollaborators((prev) => [...prev, data]);
   }, []); // só recria a função se dependências mudarem (nenhuma aqui)
 
   return (
@@ -79,6 +77,7 @@ function App() {
           collaborators={collaborators.filter((collaborator) => collaborator.team == team.name)}
         />
       ))}
+      <Footer />
     </>
   );
 }
