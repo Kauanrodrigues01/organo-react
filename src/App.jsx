@@ -12,7 +12,15 @@ import getJsonData from "./utils/getJsonData";
 function App() {
   const [teams, setTeams] = useState([]);
   const [collaborators, setCollaborators] = useState([]);
-  const [notification, setNotification] = useState(""); // Estado para notificação
+  const [notification, setNotification] = useState("Testando notificação, para ver o tamanho da caixa"); // Estado para notificação
+  
+  // Função auxiliar para exibir notificações
+  const showNotification = useCallback((message) => {
+    setNotification(message);
+    setTimeout(() => {
+      setNotification("");
+    }, 4000);
+  }, []);
 
   // Funciona parecido com uma chamada em uma API
   useEffect(() => {
@@ -39,14 +47,21 @@ function App() {
 
   // Só recria a função se dependências mudarem (nenhuma aqui)
   const handleAddCollaborator = useCallback((data) => {
-    setCollaborators((prev) => [...prev, data]);
-  }, []);
+    const collaboratorWithId = {
+      ...data,
+      id: uuidv4() // Adiciona ID único ao colaborador
+    };
+    
+    setCollaborators((prev) => [...prev, collaboratorWithId]);
+    showNotification(`Colaborador "${data.name}" adicionado!`);
+  }, [showNotification]);
 
   const handleRemoveCollaborator = useCallback((id) => {
     setCollaborators((prev) =>
       prev.filter((collaborator) => collaborator.id !== id)
     );
-  }, []);
+    showNotification("Colaborador removido!");
+  }, [showNotification]);
 
   const handleOnChangeTeamColor = useCallback((id, colorHex) => {
     setTeams((teams) =>
@@ -74,16 +89,8 @@ function App() {
       return data;
     });
 
-    // Exibe notificação
-    setNotification(
-      `Time "${name}" adicionado!`
-    );
-
-    // Remove a notificação após 4 segundos
-    setTimeout(() => {
-      setNotification("");
-    }, 4000);
-  }, []);
+    showNotification(`Time "${name}" adicionado!`);
+  }, [showNotification]);
 
   // 🎯 SOLUÇÃO: Memoiza os colaboradores por team com referências estáveis
   const collaboratorsByTeam = useMemo(() => {

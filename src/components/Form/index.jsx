@@ -38,8 +38,19 @@ const Form = memo(
           team: teamOptions.find((teamOption) => teamOption.value == team)
             ?.label,
         });
+
+        // Limpa os campos do formulário de colaborador
+        setName("");
+        setPosition("");
+        setImage("");
+        setPhone("");
+        setTeam("");
       } else if (formType === "formTeam" && onSubmitFormTeam) {
         onSubmitFormTeam(teamName, teamColor);
+
+        // Limpa os campos do formulário de time
+        setTeamName("");
+        setTeamColor("#000000");
       }
     }
 
