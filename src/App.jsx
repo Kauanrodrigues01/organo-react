@@ -1,5 +1,6 @@
 import hexToRgba from "hex-to-rgba";
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 import "./App.css";
 import Banner from "./components/Banner";
 import Footer from "./components/Footer";
@@ -11,6 +12,7 @@ import getJsonData from "./utils/getJsonData";
 function App() {
   const [teams, setTeams] = useState([]);
   const [collaborators, setCollaborators] = useState([]);
+  const [notification, setNotification] = useState(""); // Estado para notificação
 
   // Funciona parecido com uma chamada em uma API
   useEffect(() => {
@@ -60,6 +62,29 @@ function App() {
     );
   }, []);
 
+  const handleAddTeam = useCallback((name, color) => {
+    setTeams((prev) => {
+      const data = [...prev];
+      data.push({
+        id: uuidv4(),
+        name: name,
+        primaryColor: color,
+        secondaryColor: hexToRgba(color),
+      });
+      return data;
+    });
+
+    // Exibe notificação
+    setNotification(
+      `Time "${name}" adicionado!`
+    );
+
+    // Remove a notificação após 4 segundos
+    setTimeout(() => {
+      setNotification("");
+    }, 4000);
+  }, []);
+
   // 🎯 SOLUÇÃO: Memoiza os colaboradores por team com referências estáveis
   const collaboratorsByTeam = useMemo(() => {
     const result = {};
@@ -77,9 +102,14 @@ function App() {
   return (
     <>
       <Banner />
+
+      {/* Notificação */}
+      {notification && <div className="notification">{notification}</div>}
+
       <Form
         teams={teams}
-        onSubmit={handleAddCollaborator}
+        onSubmitFormCollaborator={handleAddCollaborator}
+        onSubmitFormTeam={handleAddTeam}
       />
       <section className="teams">
         <h1>Minha Organização</h1>
