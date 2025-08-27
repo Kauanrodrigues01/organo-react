@@ -1,12 +1,12 @@
-import { useCallback, useEffect, useState } from "react";
+import hexToRgba from "hex-to-rgba";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import "./App.css";
 import Banner from "./components/Banner";
+import Footer from "./components/Footer";
 import Form from "./components/Form";
 import Team from "./components/Team";
-import getJsonData from "./utils/getJsonData";
-import Footer from "./components/Footer";
-import "./App.css";
 import AddID from "./utils/addID";
-import hexToRgba from "hex-to-rgba";
+import getJsonData from "./utils/getJsonData";
 
 function App() {
   const [teams, setTeams] = useState([]);
@@ -46,7 +46,7 @@ function App() {
     );
   }, []);
 
-  const handleOnChangeTeamColor = (id, colorHex) => {
+  const handleOnChangeTeamColor = useCallback((id, colorHex) => {
     setTeams((teams) =>
       teams.map((team) =>
         team.id === id
@@ -58,7 +58,17 @@ function App() {
           : team
       )
     );
-  };
+  }, []);
+
+  // Memoiza os colaboradores por team para evitar filtros desnecessários
+  const collaboratorsByTeam = useMemo(() => {
+    return teams.reduce((acc, team) => {
+      acc[team.name] = collaborators.filter(
+        (collaborator) => collaborator.team === team.name
+      );
+      return acc;
+    }, {});
+  }, [teams, collaborators]);
 
   return (
     <>
@@ -70,9 +80,7 @@ function App() {
           <Team
             key={team.id}
             teamData={team}
-            collaborators={collaborators.filter(
-              (collaborator) => collaborator.team == team.name
-            )}
+            collaborators={collaboratorsByTeam[team.name] || []}
             onRemove={handleRemoveCollaborator}
             onChangeTeamColor={handleOnChangeTeamColor}
           />
