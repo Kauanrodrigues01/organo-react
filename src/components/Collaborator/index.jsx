@@ -1,9 +1,16 @@
-import './Collaborator.css'
+import "./Collaborator.css";
+import { AiFillCloseCircle } from "react-icons/ai";
 
-const Collaborator = ({primaryColor, data}) => {
+const Collaborator = ({ primaryColor, data, onRemove }) => {
   return (
     <div className="collaborator">
-      <div className='header' style={{ backgroundColor: primaryColor }}>
+      <AiFillCloseCircle
+        size={25}
+        onClick={() => onRemove(data.name)}
+        className="remove"
+        title="Remover colaborador"
+      />
+      <div className="header" style={{ backgroundColor: primaryColor }}>
         <img src={data.image} alt={`Imagem do collaborador ${data.name}`} />
       </div>
       <div className="footer">
@@ -11,7 +18,7 @@ const Collaborator = ({primaryColor, data}) => {
         <h5>{data.position}</h5>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Collaborator
+export default Collaborator;

@@ -64,6 +64,10 @@ function App() {
     setCollaborators((prev) => [...prev, data]);
   }, []); // só recria a função se dependências mudarem (nenhuma aqui)
 
+  const handleRemoveCollaborator = useCallback((name) => {
+    setCollaborators((prev) => prev.filter((collaborator) => collaborator.name !== name));
+  }, []);
+
   return (
     <>
       <Banner />
@@ -75,6 +79,7 @@ function App() {
           primaryColor={team.primaryColor}
           secondaryColor={team.secondaryColor}
           collaborators={collaborators.filter((collaborator) => collaborator.team == team.name)}
+          onRemove={handleRemoveCollaborator}
         />
       ))}
       <Footer />
