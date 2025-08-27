@@ -5,7 +5,6 @@ import TextInput from "../TextInput";
 import "./Form.css";
 
 const Form = memo(({ teams, onSubmit }) => {
-  console.log("Form renderizou");
   // 🎯 Memoiza teamOptions - só recalcula se teams mudar
   // Como só usamos id e name, mudanças de cor não afetam este cálculo
   const teamOptions = useMemo(() => {

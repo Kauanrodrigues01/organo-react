@@ -17,8 +17,7 @@ import "./Team.css";
 const Team = memo(
   ({ collaborators, teamData, onRemove, onChangeTeamColor }) => {
     const collaboratorsExists = collaborators.length > 0;
-    console.log(`🎨 Team "${teamData.name}" renderizou!`);
-
+  
     return collaboratorsExists ? (
       <section
         className="team"
