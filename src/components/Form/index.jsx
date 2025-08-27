@@ -1,19 +1,19 @@
-import { useState } from "react";
+import { memo, useMemo, useState } from "react";
 import Button from "../Button";
 import SelectInput from "../SelectInput";
 import TextInput from "../TextInput";
 import "./Form.css";
 
-const Form = (props) => {
-  const teamOptions = [
-    { value: "back", label: "Programação" },
-    { value: "front", label: "Front-End" },
-    { value: "ds", label: "Data Science" },
-    { value: "devops", label: "DevOps" },
-    { value: "ui", label: "UX e Design" },
-    { value: "mobile", label: "Mobile" },
-    { value: "ig", label: "Inovação e Gestão" },
-  ];
+const Form = memo(({ teams, onSubmit }) => {
+  console.log("Form renderizou");
+  // 🎯 Memoiza teamOptions - só recalcula se teams mudar
+  // Como só usamos id e name, mudanças de cor não afetam este cálculo
+  const teamOptions = useMemo(() => {
+    return teams.map((team) => ({
+      label: team.name,
+      value: team.id,
+    }));
+  }, [teams]);
 
   const [name, setName] = useState("");
   const [position, setPosition] = useState("");
@@ -23,8 +23,8 @@ const Form = (props) => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (props.onSubmit) {
-      props.onSubmit({
+    if (onSubmit) {
+      onSubmit({
         name,
         position,
         image,
@@ -88,6 +88,19 @@ const Form = (props) => {
       </form>
     </section>
   );
-};
+},
+  // Função de comparação customizada para o memo
+  (prevProps, nextProps) => {
+    const teamDataChange = prevProps.teams.length !== nextProps.teams.length ||
+      prevProps.teams.some(
+        (prev, index) =>
+          prev.id !== nextProps.teams[index]?.id || prev.name !== nextProps.teams[index]?.name
+      )
+    
+    return !teamDataChange;
+  }
+);
+
+Form.displayName = "Form";
 
 export default Form;

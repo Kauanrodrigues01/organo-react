@@ -77,7 +77,10 @@ function App() {
   return (
     <>
       <Banner />
-      <Form onSubmit={handleAddCollaborator} />
+      <Form
+        teams={teams}
+        onSubmit={handleAddCollaborator}
+      />
       <section className="teams">
         <h1>Minha Organização</h1>
         {teams.map((team) => (
