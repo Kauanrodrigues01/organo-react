@@ -6,7 +6,7 @@ const Collaborator = ({ primaryColor, data, onRemove }) => {
     <div className="collaborator">
       <AiFillCloseCircle
         size={25}
-        onClick={() => onRemove(data.name)}
+        onClick={() => onRemove(data.id)}
         className="remove"
         title="Remover colaborador"
       />

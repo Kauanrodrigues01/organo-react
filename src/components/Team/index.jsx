@@ -5,6 +5,7 @@ import hexToRgba from "hex-to-rgba";
 
 const Team = ({
   collaborators,
+  id,
   name,
   primaryColor,
   secondaryColor,
@@ -12,7 +13,7 @@ const Team = ({
 }) => {
   const collaboratorsExists = collaborators.length > 0;
 
-  const [team, setTeam] = useState({ name, primaryColor, secondaryColor });
+  const [team, setTeam] = useState({ id, name, primaryColor, secondaryColor });
 
   const handleOnChangeColor = (e) => {
     setTeam({
