@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Banner from "./components/Banner";
 import Form from "./components/Form";
 import Team from "./components/Team";
@@ -6,8 +6,10 @@ import getJsonData from "./utils/getJsonData";
 import Footer from "./components/Footer";
 import "./App.css";
 import AddID from "./utils/addID";
+import hexToRgba from "hex-to-rgba";
 
 function App() {
+  const [teams, setTeams] = useState([]);
   const [collaborators, setCollaborators] = useState([]);
 
   // Funciona parecido com uma chamada em uma API
@@ -18,65 +20,45 @@ function App() {
     };
 
     loadData();
-    console.log(collaborators);
   }, []);
 
-  // useMemo para memorizar o valor e não recriar o array e mudar o id toda vez que o componente for renderizado
-  const teams = useMemo(
-    () =>
-      AddID([
-        {
-          name: "Programação",
-          primaryColor: "#57C278",
-          secondaryColor: "#D9F7E9",
-        },
-        {
-          name: "Front-End",
-          primaryColor: "#82CFFA",
-          secondaryColor: "#E8F8FF",
-        },
-        {
-          name: "Data Science",
-          primaryColor: "#A6D157",
-          secondaryColor: "#F0F8E2",
-        },
-        {
-          name: "DevOps",
-          primaryColor: "#E06B69",
-          secondaryColor: "#FDE7E8",
-        },
-        {
-          name: "UX e Design",
-          primaryColor: "#DB6EBF",
-          secondaryColor: "#FAE9F5",
-        },
-        {
-          name: "Mobile",
-          primaryColor: "#FFBA05",
-          secondaryColor: "#FFF5D9",
-        },
-        {
-          name: "Inovação e Gestão",
-          primaryColor: "#FF8A29",
-          secondaryColor: "#FFEEDF",
-        },
-      ]),
-    []
-  );
+  useEffect(() => {
+    const loadData = async () => {
+      const data = await getJsonData("/data/teams.json");
+      if (data) setTeams(AddID(data));
+    };
+
+    loadData();
+  }, []);
 
   // function handleAddCollaborator(data) {
   //   setCollaborators([...collaborators, data])
   // }
 
+  // Só recria a função se dependências mudarem (nenhuma aqui)
   const handleAddCollaborator = useCallback((data) => {
     setCollaborators((prev) => [...prev, data]);
-  }, []); // só recria a função se dependências mudarem (nenhuma aqui)
+  }, []);
 
   const handleRemoveCollaborator = useCallback((id) => {
     setCollaborators((prev) =>
       prev.filter((collaborator) => collaborator.id !== id)
     );
   }, []);
+
+  const handleOnChangeTeamColor = (id, colorHex) => {
+    setTeams((teams) =>
+      teams.map((team) =>
+        team.id === id
+          ? {
+              ...team,
+              primaryColor: colorHex,
+              secondaryColor: hexToRgba(colorHex, 0.3),
+            }
+          : team
+      )
+    );
+  };
 
   return (
     <>
@@ -87,14 +69,12 @@ function App() {
         {teams.map((team) => (
           <Team
             key={team.id}
-            id={team.id}
-            name={team.name}
-            primaryColor={team.primaryColor}
-            secondaryColor={team.secondaryColor}
+            teamData={team}
             collaborators={collaborators.filter(
               (collaborator) => collaborator.team == team.name
             )}
             onRemove={handleRemoveCollaborator}
+            onChangeTeamColor={handleOnChangeTeamColor}
           />
         ))}
       </section>
