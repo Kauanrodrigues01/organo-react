@@ -38,3 +38,16 @@
 .select-input select option.placeholder {
     color: var(--color-quaternary);
 }
+
+@media (max-width: 768px) {
+    .select-input select {
+        padding: 0.75rem;
+        font-size: var(--font-size-sm);
+    }
+    .select-input label {
+        font-size: var(--font-size-base);
+    }
+    .select-input select option {
+        font-size: var(--font-size-sm);
+    }
+}

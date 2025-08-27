@@ -3,6 +3,9 @@
     width: 100%;
     padding: 35px;
     background-color: #F0F0F0;
+    background-image: url('/images/fundo.png');
+    background-blend-mode: multiply; /* Adiciona um efeito de mesclagem ao fundo, permitindo mais de um tipo de background */
+    position: relative;
 }
 
 .team h3 {
@@ -17,4 +20,22 @@
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
+}
+
+
+.input-color {
+    position: absolute;
+    right: 50px;
+    top: 10px;
+}
+
+@media (max-width: 768px) {
+    .team h3 {
+        font-size: var(--font-size-2xl);
+    }
+
+    .input-color {
+        right: 20px;
+        top: 20px;
+    }
 }

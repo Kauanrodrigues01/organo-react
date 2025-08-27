@@ -4,6 +4,7 @@ import Form from "./components/Form";
 import Team from "./components/Team";
 import getJsonData from "./utils/getJsonData";
 import Footer from "./components/Footer";
+import './App.css'
 
 function App() {
   const [collaborators, setCollaborators] = useState([]);
@@ -72,16 +73,19 @@ function App() {
     <>
       <Banner />
       <Form onSubmit={handleAddCollaborator} />
-      {teams.map((team) => (
-        <Team
-          key={team.name}
-          name={team.name}
-          primaryColor={team.primaryColor}
-          secondaryColor={team.secondaryColor}
-          collaborators={collaborators.filter((collaborator) => collaborator.team == team.name)}
-          onRemove={handleRemoveCollaborator}
-        />
-      ))}
+      <section className="teams">
+        <h1>Minha Organização</h1>
+        {teams.map((team) => (
+          <Team
+            key={team.name}
+            name={team.name}
+            primaryColor={team.primaryColor}
+            secondaryColor={team.secondaryColor}
+            collaborators={collaborators.filter((collaborator) => collaborator.team == team.name)}
+            onRemove={handleRemoveCollaborator}
+          />
+        ))}
+      </section>
       <Footer />
     </>
   );

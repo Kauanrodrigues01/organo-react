@@ -8,6 +8,7 @@ const Team = ({ collaborators, name, primaryColor, secondaryColor, onRemove }) =
 
   return collaboratorsExists ? (
     <section className="team" style={cssSection}>
+      <input type="color" className="input-color" />
       <h3 style={{ borderColor: primaryColor }}>{name}</h3>
       <div className="collaborators">
         {collaborators.map((collaborator, index) => (

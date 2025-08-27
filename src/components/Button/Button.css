@@ -16,3 +16,11 @@
     background-color: var(--color-primary-dark);
     transform: scale(1.05);
 }
+
+@media (max-width: 768px) {
+    .button {
+        padding: 12px 15px;
+        font-size: var(--font-size-sm);
+        margin: 16px 0;
+    }
+}

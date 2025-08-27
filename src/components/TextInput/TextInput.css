@@ -27,3 +27,18 @@
     font-family: var(--font-family-primary);
     font-size: var(--font-size-base);
 }
+
+@media (max-width: 768px) {
+    .input-text {
+        margin: 1rem 0;
+    }
+    .input-text label {
+        font-size: var(--font-size-base);
+    }
+    .input-text input {
+        padding: 0.75rem;
+    }
+    .input-text input::placeholder {
+        font-size: var(--font-size-sm);
+    }
+}
