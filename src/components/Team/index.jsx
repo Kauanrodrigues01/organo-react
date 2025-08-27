@@ -3,29 +3,21 @@ import Collaborator from "../Collaborator";
 import "./Team.css";
 
 /*
- * 🎯 Por que usar React.memo aqui?
+ * 🎯 Por que usar React.memo aqui com comparação customizada?
  *
- * SEM memo:
- * - Quando mudamos a cor de UM team específico
- * - O App re-renderiza (porque teams state mudou)
- * - TODOS os componentes Team re-renderizam desnecessariamente
- * - Isso causa perda de performance
+ * PROBLEMA: Mesmo com memo, todos os Teams re-renderizam porque:
+ * - Mudança de cor altera o array teams no App
+ * - collaboratorsByTeam é recalculado (novo objeto)
+ * - Todos os Teams recebem novos arrays de collaborators
+ * - memo detecta mudança e re-renderiza todos
  *
- * COM memo:
- * - React compara as props de cada Team antes de re-renderizar
- * - Apenas o Team que teve as props alteradas re-renderiza
- * - Os outros Teams são "pulados" (skip render)
- *
- * Benefício: Mudar 1 cor = apenas 1 team re-renderiza (não todos)
- *
- * Funciona porque:
- * ✅ Temos múltiplos Teams renderizados
- * ✅ Props são estáveis (useCallback + useMemo no App)
- * ✅ Mudanças frequentes (cor do team)
+ * SOLUÇÃO: memo com comparação customizada que ignora mudanças
+ * irrelevantes e foca apenas no que realmente importa para cada Team
  */
 const Team = memo(
   ({ collaborators, teamData, onRemove, onChangeTeamColor }) => {
     const collaboratorsExists = collaborators.length > 0;
+    console.log(`🎨 Team "${teamData.name}" renderizou!`);
 
     return collaboratorsExists ? (
       <section
@@ -53,6 +45,27 @@ const Team = memo(
     ) : (
       ""
     );
+  },
+  // 🎯 Função de comparação customizada
+  (prevProps, nextProps) => {
+    // Só re-renderiza se algo que realmente importa mudou
+    const teamDataChanged =
+      prevProps.teamData.id !== nextProps.teamData.id ||
+      prevProps.teamData.name !== nextProps.teamData.name ||
+      prevProps.teamData.primaryColor !== nextProps.teamData.primaryColor ||
+      prevProps.teamData.secondaryColor !== nextProps.teamData.secondaryColor;
+
+    // Compara colaboradores por IDs (mais eficiente que array inteiro)
+    const collaboratorsChanged =
+      prevProps.collaborators.length !== nextProps.collaborators.length ||
+      prevProps.collaborators.some(
+        (prev, index) => prev.id !== nextProps.collaborators[index]?.id
+      );
+
+    // Funções devem ser estáveis (useCallback), então não precisamos comparar
+
+    // Retorna true se NÃO deve re-renderizar (props são "iguais")
+    return !teamDataChanged && !collaboratorsChanged;
   }
 );
 

@@ -60,15 +60,19 @@ function App() {
     );
   }, []);
 
-  // Memoiza os colaboradores por team para evitar filtros desnecessários
+  // 🎯 SOLUÇÃO: Memoiza os colaboradores por team com referências estáveis
   const collaboratorsByTeam = useMemo(() => {
-    return teams.reduce((acc, team) => {
-      acc[team.name] = collaborators.filter(
+    const result = {};
+
+    // Cria arrays apenas uma vez e mantém as referências
+    teams.forEach((team) => {
+      result[team.name] = collaborators.filter(
         (collaborator) => collaborator.team === team.name
       );
-      return acc;
-    }, {});
-  }, [teams, collaborators]);
+    });
+
+    return result;
+  }, [collaborators, teams]); // Vai recalcular quando teams muda, mas isso é necessário
 
   return (
     <>
